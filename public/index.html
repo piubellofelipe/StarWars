@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/Death-Star-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/Death-Star-icon.png">
+    <script type="text/javascript" src="/cookie.js"></script>
     <title>TDSW</title>
   </head>
   <body>
@@ -12,4 +13,15 @@
     <div id="root"></div>
 
   </body>
+  <script>
+  if ('serviceWorker' in navigator) {
+    console.log("Will the service worker register?");
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("Yes, it did.");
+      }).catch(function(err) {
+        console.log("No it didn't. This happened: ", err)
+      });
+  }
+</script>
 </html>
