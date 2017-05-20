@@ -1,5 +1,5 @@
 window.onload = (function () {
-    var visit = getCookie("cookie-visitor");
+    var visit = getCookie("cookie");
     if (visit == null) {
         alert("Bem vindo! Esta é a sua primeira visita!");
         var expire = new Date();
