@@ -12,7 +12,7 @@ This project was made in order to complete a 3-part challenge:
   >3- Include a filter in the search (done)
   
 Technologies used in the development:
-  >react-create-app to give us an basic boilerplate (see: https://github.com/facebookincubator/create-react-app) <br />
+  >create-react-app to give us an basic boilerplate (see: https://github.com/facebookincubator/create-react-app) <br />
   >basic html/css to give our app a basic (and for now ugly) interface <br />
   >react.js to effectively building the app <br />
 
