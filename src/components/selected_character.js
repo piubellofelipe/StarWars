@@ -10,7 +10,7 @@ const selectedCharacter = (props) => {
     var moviesList = movies.map( movie => {
         var response = "";
         var req = new XMLHttpRequest();
-        req.open('GET', movie, false);
+        req.open('GET', movie.replace("http", "https"), false);
         req.addEventListener('load', function(){
             if (req.status >= 200 && req.status < 400){
                 response = JSON.parse(req.responseText);
