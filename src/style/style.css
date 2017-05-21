@@ -3,6 +3,7 @@
     height: 100%;
     min-height: 900px;
     background-image: url("death_star.jpeg");
+    background-position: center;
     color:rgb(230,230,230);
     text-align: center;
 }
