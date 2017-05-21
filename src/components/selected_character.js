@@ -11,7 +11,6 @@ const selectedCharacter = (props) => {
         var response = "";
         var req = new XMLHttpRequest();
         var url = movie.replace("http", "https");
-        console.log(url);
         req.open('GET', url, false);
         req.addEventListener('load', function(){
             if (req.status >= 200 && req.status < 400){
