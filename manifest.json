@@ -6,7 +6,13 @@
       "src": "Death-Star-icon.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src":"Death-Star-icon2.png",
+      "sizes":"512x512",
+      "type":"image/png"
     }
+
   ],
   "start_url": "./index.html",
   "display": "standalone",
