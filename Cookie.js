@@ -35,6 +35,7 @@ function getCookie(name) {
     } else {
         begin += 2;
     }
+ 
     var end = cookies.indexOf(";", begin);
      
     if (end == -1) {
