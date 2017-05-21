@@ -9,6 +9,7 @@ This project was made in order to complete a 3-part challenge:
 Technologies used in the development:
   >basic html/css to give our app a basic (and for now ugly) interface <br />
   >react.js to effectively building the app <br />
+  >lodash.debounce to break the search function. without _.debounce the search is search is instantaneous, but the request time makes it slower <br />
 
   
 To-do list:
