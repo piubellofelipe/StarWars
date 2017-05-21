@@ -79,6 +79,7 @@ class App extends Component{
 
 //display everything
     render() {
+            //used lodash here so our search is smoother (without this the search is instantaneous, but the request time makes it slower than without loadash)
             const characterSearch = _.debounce((term) => this.characterSearch(term), 100);
 
         return(

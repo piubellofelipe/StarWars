@@ -22,12 +22,13 @@
 }
 .character-list{
     margin-top: 60px;
-    width: 50%;
+    width: 100%;
     display: block;
     overflow: auto;
-    margin-left: 25%;
 }
 .character-list-item{
+    width: 50%;
+    margin-left:25%;
     background-color:rgba(0,0,0,0.8);
 }
 .page-selector{
