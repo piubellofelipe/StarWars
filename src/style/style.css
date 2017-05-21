@@ -22,11 +22,11 @@ body, html{
     text-align:center;
 }
 .mainInfoInner{
-    background-color: rgba(100, 100, 100, 0.5);
+    background-color: rgba(50, 50, 50, 0.5);
     display:block;
     overflow:auto;
-    margin-left: 25%;
-    width:50%;
+    margin-left: 30%;
+    width:40%;
 }
 .character-list{
     margin-top: 60px;
@@ -35,8 +35,9 @@ body, html{
     overflow: auto;
 }
 .character-list-item{
-    width: 50%;
-    margin-left:25%;
+    width: 30%;
+    margin-left:35%;
+    height: 30px;
     background-color:rgba(0,0,0,0.8);
 }
 .page-selector{

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 //component responsible for showing the selectedCharacter basic info and display any additional info when required
 const selectedCharacter = (props) => {
     const selected = props.selectedCharacter;
-    if (!selected) return <div   className = "mainInfo"><div className="mainInfoInner">Bem vindo ao Tudo sobre StarWars! Selecione um personagem para ver suas principais informações!</div></div>;
+    if (!selected) return <div   className = "mainInfo">
+        <div className="mainInfoInner">Bem vindo ao Tudo sobre StarWars! Selecione um personagem para ver suas principais informações!</div></div>;
 
 
     //gather movies info
@@ -43,7 +44,7 @@ const selectedCharacter = (props) => {
      //returns the most important info about the character
     return(
         <div   className = "mainInfo">
-            <div>
+            <div className = "mainInfoInner">
                 <div>NOME: {selected.name}</div>
                 <div>GÊNERO: {selected.gender}</div>
                 <div>COR DOS OLHOS: {selected.eye_color}</div>
