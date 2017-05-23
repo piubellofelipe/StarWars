@@ -3,36 +3,31 @@ import React, {Component} from 'react'
 class Filter extends Component{
     constructor(props){
         super(props);
-        this.state = {gender: null,
-                       minMass:null, maxMass: null,
-                       minHeight: null, maxHeight: null
+        this.state = {gender: "",
+                       minMass:"", maxMass: "",
+                       minHeight: "", maxHeight: ""
         };
     }
     render(){
         return(
         <div className="filters">
             <input 
-            value = {this.state.gender}
-            defaultValue = {"genero"}
+            placeholder = {"genero"}
             onChange={event => this.onGenderInputChange(event.target.value)} />
             
             <input 
-            value = {this.state.height}
-            defaultValue = {"altura minima"}
+            placeholder = {"altura minima"}
             onChange={event => this.onMinHeightInputChange(event.target.value)} />
             <input 
-            value = {this.state.height}
-            defaultValue = {"altura maxima"}
+            placeholder = {"altura maxima"}
             onChange={event => this.onMaxHeightInputChange(event.target.value)} />
             
             <input 
-            value = {this.state.mass}
-            defaultValue = {"massa minima"}
+            placeholder = {"massa minima"}
             onChange={event => this.onMinMassInputChange(event.target.value)} />
 
             <input 
-            value = {this.state.mass}
-            defaultValue = {"massa maxima"}
+            placeholder = {"massa maxima"}
             onChange={event => this.onMaxMassInputChange(event.target.value)} />
 
 

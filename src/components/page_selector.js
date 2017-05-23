@@ -6,7 +6,7 @@ const selector = (props) =>{
     var rightPg = actualPg;
     if (actualPg > 1)
         leftPg = actualPg -1;
-    if (actualPg < 9)
+    if (actualPg < props.maxPg)
         rightPg = actualPg +1;
     return(
         <div className = "page-selector">
