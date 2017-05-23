@@ -4,28 +4,41 @@ import axios from 'axios'
 class selectedCharacter extends Component{
     constructor (props) {
         super(props);
-        this.state = {loading: true, data:null};
+        this.state = {loading: false, data:null, tick: 0};
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
+    }
+    componentDidUpdate(){
+        if(this.state.loading){
+            this.fetchData();
+        }
     }
 
+    componentWillReceiveProps(){
+        this.setState({loading:true})
+        this.forceUpdate();
+    }
 
-    componentDidUpdate(){
-        if (!this.props.selected) return;
+    fetchData(){
+        if (!this.props.selected) return; //checks if needs to fetch data
         if (this.props.selected.moviesList == null){
-            if (this.state.loading){
-                this.setState({loading: false});
-                return <div>loading...</div>
+        console.log("whill fetch");
+        const movies= this.props.selected.films;
+        this.setState({loading:false})
+        var moviesList = movies.map( movie => {
+            var response = "";
+            var req = new XMLHttpRequest();
+            req.open('GET', movie, false);
+            req.addEventListener('load', function(){
+                if (req.status >= 200 && req.status < 400){
+                    response = JSON.parse(req.responseText);
+            } else{
+                console.log("Não conseguiu conectar =/");
             }
-            const movies= this.props.selected.films;
-
-            var moviesList = movies.map( movie => {
-                var url = movie.replace("http", "https");
-                axios.get(url).then((response) => {
-                    this.setState({loading: false});
-                    return response.data; 
-                });
             });
-            console.log(moviesList);
+            req.send(null);
+            return response;
+        });
             var moviesListNames = moviesList.map(
                 movie => {
                     return( <div onClick = {() => this.props.onAddInfoSelect(movie)}> {movie.title}</div>);
@@ -34,7 +47,7 @@ class selectedCharacter extends Component{
             this.props.selected.moviesList = moviesListNames;
     }
 
-    this.setState ({data:
+    this.props.selected.data = (
         <div   className = "mainInfo">
             <div className = "mainInfoInner">
                 <div>NOME: {this.props.selected.name}</div>
@@ -47,13 +60,14 @@ class selectedCharacter extends Component{
                 </div>
             </div>
         </div>
-        }
         );
     }
 
+
     render(){
-    var content;
-    if (!this.props.selected && !this.props.addInfo) return  <div   className = "mainInfo">
+        console.log("rendering...", (this.props.selected && this.state.loading) );
+    if (this.props.selected && !this.state.loading)  console.log("foi?");
+    if (this.props.selected == null && this.props.addInfo == null) return  <div   className = "mainInfo">
         <div className="mainInfoInner">Bem vindo ao Tudo sobre StarWars! Selecione um personagem para ver suas principais informações!</div></div>;
     if (this.props.addInfo != null){
         return  (
@@ -67,7 +81,7 @@ class selectedCharacter extends Component{
             </div>
         );
     }
-    return this.state.data;
+   return <div> {this.props.selected.data} </div>
     };
     
 }

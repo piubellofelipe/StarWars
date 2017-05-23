@@ -32,9 +32,9 @@ class App extends Component{
     }
 
 //gather the characters from SWAPI
-    loadCharacters(page, filter){
+    loadCharacters(page, async){
         var response = "";
-        req.open('GET', url_SWAPI+'?page='+page, false);
+        req.open('GET', url_SWAPI+'?page='+page, async);
         req.addEventListener('load', function(){
             if (req.status >= 200 && req.status < 400){
                 response = JSON.parse(req.responseText);
@@ -92,9 +92,14 @@ characterSearch(term){
 
 
 componentWillMount(){
-    var list = this.loadCharacters(1);
+    var list = this.loadCharacters(1, false);
+    this.setState({list});
+}
+componentDidMount(){
+    if (this.state.loaded) return;
+    var list = this.state.list;
     for (var i=2; i<=9; i++)
-        list = list.concat(this.loadCharacters(i)); 
+        list = list.concat(this.loadCharacters(i, false));
     this.setState({list});
     this.setState({characters : list});
 }
