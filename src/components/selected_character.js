@@ -20,12 +20,12 @@ class selectedCharacter extends Component{
 
             var moviesList = movies.map( movie => {
                 var url = movie.replace("http", "https");
-                axios.get(url).then(function(response){
-                    this.setState({loading: false, data:response});
-                    console.log(response.data);
-                    return response; 
+                axios.get(url).then((response) => {
+                    this.setState({loading: false});
+                    return response.data; 
                 });
             });
+            console.log(moviesList);
             var moviesListNames = moviesList.map(
                 movie => {
                     return( <div onClick = {() => this.props.onAddInfoSelect(movie)}> {movie.title}</div>);
@@ -34,7 +34,7 @@ class selectedCharacter extends Component{
             this.props.selected.moviesList = moviesListNames;
     }
 
-    return (
+    this.setState ({data:
         <div   className = "mainInfo">
             <div className = "mainInfoInner">
                 <div>NOME: {this.props.selected.name}</div>
@@ -47,6 +47,7 @@ class selectedCharacter extends Component{
                 </div>
             </div>
         </div>
+        }
         );
     }
 
@@ -66,7 +67,6 @@ class selectedCharacter extends Component{
             </div>
         );
     }
-    console.log(this.state.data);
     return this.state.data;
     };
     
