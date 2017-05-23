@@ -65,8 +65,7 @@ class selectedCharacter extends Component{
 
 
     render(){
-        console.log("rendering...", (this.props.selected && this.state.loading) );
-    if (this.props.selected && !this.state.loading)  console.log("foi?");
+    if (this.props.selected && this.state.loading)  return <div>Loading...</div>
     if (this.props.selected == null && this.props.addInfo == null) return  <div   className = "mainInfo">
         <div className="mainInfoInner">Bem vindo ao Tudo sobre StarWars! Selecione um personagem para ver suas principais informações!</div></div>;
     if (this.props.addInfo != null){

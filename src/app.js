@@ -17,6 +17,7 @@ class App extends Component{
 
         var response = (this.loadCharacters(1));
         this.state = {
+             tick:0,
              page : 1,
              characters: response,
              selectedCharacter : null,
