@@ -1,49 +1,39 @@
 window.onload = (function () {
-    var visit = getCookie("visit");
+    var visit = getCookie("cookie");
+    console.log("cookie: ", visit.getDate);
     if (visit == null) {
         console.log("site ainda não visitado.");
         alert("Bem vindo! Esta é a sua primeira visita!");
-        var date = new Date();
-        date.setDate(date.getDate() + 3650000);
-        setCookie("visit", "here", date)
+
+        setCookie("cookie", "here", 36500)
         return;
     }
     console.log("site já visitado.");
 
 });
 
-function setCookie(name, value, duration) {
-        var cookie = name + "=" + escape(value) +
-        ((duration) ? "; duration=" + (duration).toUTCString() : "");
- 
-        document.cookie = cookie;
+function createCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
 }
 
+
 function getCookie(name) {
-    var cookies = document.cookie;
-    var prefix = name + "=";
-    var begin = cookies.indexOf("; " + prefix);
- 
-    if (begin == -1) {
- 
-        begin = cookies.indexOf(prefix);
-         
-        if (begin != 0) {
-            return null;
-        }
- 
-    } else {
-        begin += 2;
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
- 
-    var end = cookies.indexOf(";", begin);
-     
-    if (end == -1) {
-        end = cookies.length;                        
-    }
- 
-    return unescape(cookies.substring(begin + prefix.length, end));
+    return null;
 }
+
 
 function deleteCookie(name) {
        if (getCookie(name)) {
