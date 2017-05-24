@@ -4,6 +4,7 @@ import SelectedCharacter from './components/selected_character'
 import PageSelector from './components/page_selector'
 import SearchBar from './components/search_bar'
 import Filter from './components/filters'
+import axios from 'axios'
 import _ from 'lodash'
 
 
@@ -92,18 +93,22 @@ characterSearch(term){
         this.setState({maxPg})
     }
 
-
-componentWillMount(){
-    var list = this.loadCharacters(1, false);
-    this.setState({list});
-}
 componentDidMount(){
-    if (this.state.loaded) return;
-    var list = this.state.list;
-    for (var i=2; i<=9; i++)
-        list = list.concat(this.loadCharacters(i, false));
-    this.setState({list});
-    this.setState({characters : list});
+    var promises = [];
+    for (var i=2; i<10; i++)
+        promises[i-2] =  url_SWAPI+'?page='+i;
+    var newListArray;
+    let promiseArray = promises.map(url => axios.get(url));
+    axios.all(promiseArray).then(results => {
+        newListArray = results;
+        for (var i=0; i<8; i++){
+            this.setState({characters : this.state.characters.concat(newListArray[i].data.results)});
+        }  
+        this.setState({list : this.state.characters});
+
+    });
+    
+
 }
 
 

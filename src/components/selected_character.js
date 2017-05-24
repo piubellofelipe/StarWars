@@ -9,13 +9,11 @@ class selectedCharacter extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-            console.log(nextProps.selected);
             if (nextProps.selected == null || nextProps.selected == this.state.selected)    return;
             this.fetchData(nextProps);       
     }
 
     updateData(dataArray){
-        console.log(dataArray);
         var moviesDiv = dataArray.map(
                 movie => {
                     return( <div onClick = {() => this.props.onAddInfoSelect(movie)}> {movie.data.title}</div>);
