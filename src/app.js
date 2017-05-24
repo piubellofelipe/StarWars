@@ -20,6 +20,7 @@ class App extends Component{
              tick:0,
              page : 1,
              characters: response,
+             loading : false,
              selectedCharacter : null,
              list: null,
              addInfo : null,
@@ -118,7 +119,7 @@ loadPage(){
 
         //used lodash here so our search is smoother (without this the search is instantaneous, but the request time makes it slower than without loadash)
         const characterSearch = _.debounce((term) => this.characterSearch(term), 100);
-
+        const loading = function () { if (this.state.loading) return <div>Loading...</div>}; 
         return(
             <div className = "app">
                 <SearchBar onSearch={ term => characterSearch(term)}/>
@@ -126,10 +127,14 @@ loadPage(){
                     onFilterChange={ filter => this.setState({filter})}
                     onApplyFilters = { () => this.reload()}
                 />
+                <div>{loading}</div>
                 <SelectedCharacter   
-                    onAddInfoSelect = { addInfo => {this.setState({addInfo}); this.setState({selectedCharacter : null})}}
+                    onAddInfoSelect = { addInfo => {this.setState({addInfo}); }}
                     selected = {this.state.selectedCharacter}
                     addInfo = {this.state.addInfo}
+                    loadingMessage = { bool =>{
+                            this.setState({loading : bool});
+                        }}
                 />
                 <CharacterList
                         onCharacterSelect = {selectedCharacter => {
@@ -137,6 +142,7 @@ loadPage(){
                                                 this.setState({addInfo : null});
                                                                   }
                                             }
+
                         characters={this.loadPage()}/>
                 <PageSelector
                     onPageSelect = {page => {
